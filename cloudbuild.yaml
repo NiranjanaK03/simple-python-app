@@ -36,4 +36,3 @@ options:
   logging: 'CLOUD_LOGGING_ONLY'
 
 service_account: '574565058652-compute@developer.gserviceaccount.com'
-
