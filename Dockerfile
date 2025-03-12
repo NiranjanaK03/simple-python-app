@@ -1,10 +1,16 @@
 FROM python:3.9-slim
 
-#setting working dir
+# Set working directory
 WORKDIR /app
 
-# copying files to container
+# Copy files into container
 COPY . .
 
-#Starting the app
+# Install Flask
+RUN pip install Flask
+
+# Expose the port Cloud Run expects
+EXPOSE 8080
+
+# Start the Flask app
 CMD ["python", "app.py"]
