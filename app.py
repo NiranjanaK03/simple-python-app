@@ -1,5 +1,12 @@
-import time
+from flask import Flask
+import os
 
-while True:
-    print("Hello from GCP!")
-    time.sleep(5)
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return "Hello from GCP!"
+
+if __name__ == "__main__":
+    port = int(os.getenv("PORT", 8080))
+    app.run(host="0.0.0.0", port=port)
