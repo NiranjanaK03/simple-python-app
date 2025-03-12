@@ -1,16 +1,15 @@
+# Use official Python image
 FROM python:3.9-slim
 
 # Set working directory
 WORKDIR /app
 
-# Copy files into container
+# Copy files
 COPY . .
 
-# Install Flask
+# Install dependencies
 RUN pip install Flask
 
-# Expose the port Cloud Run expects
-EXPOSE 8080
+# Run the app
+CMD ["python", "main.py"]
 
-# Start the Flask app
-CMD ["python", "app.py"]
