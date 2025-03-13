@@ -35,6 +35,8 @@ steps:
       - '--region'
       - 'us-central1'
       - '--allow-unauthenticated'
+      - '--port'
+      - '8080'
 
 images:
   - 'gcr.io/$PROJECT_ID/hello-world:$COMMIT_SHA'
