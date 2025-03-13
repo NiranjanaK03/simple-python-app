@@ -9,14 +9,21 @@ steps:
 
   # Step 2: Build and tag Docker image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/$PROJECT_ID/hello-world:$COMMIT_SHA', '.']
+    args:
+      - 'build'
+      - '-t'
+      - 'gcr.io/$PROJECT_ID/hello-world:$COMMIT_SHA'
+      - '.'
 
   # Step 3: Push Docker image to Google Container Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/$PROJECT_ID/hello-world:$COMMIT_SHA']
+    args:
+      - 'push'
+      - 'gcr.io/$PROJECT_ID/hello-world:$COMMIT_SHA'
 
-  # Step 4: Deploy to Cloud Run
+  # Step 4: Deploy to Cloud Run (FIXED)
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'  # Invoke gcloud properly
     args:
       - 'run'
       - 'deploy'
@@ -36,3 +43,4 @@ options:
   logging: 'CLOUD_LOGGING_ONLY'
 
 service_account: '574565058652-compute@developer.gserviceaccount.com'
+
