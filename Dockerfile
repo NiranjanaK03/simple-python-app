@@ -1,7 +1,7 @@
 # Using  official Python image
 FROM python:3.9-slim
 
-# Set working directory
+# Setting working directory
 WORKDIR /app
 
 # Copy files
