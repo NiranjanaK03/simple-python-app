@@ -20,6 +20,7 @@ steps:
     args:
       - 'push'
       - 'gcr.io/$PROJECT_ID/hello-world:$COMMIT_SHA'
+
  # Step 4: Scan the Docker image using Trivy
   - name: 'aquasec/trivy'
     entrypoint: 'sh'
@@ -30,7 +31,7 @@ steps:
 
 
 
-  # Step 4: Deploy to Cloud Run (FIXED)
+  # Step 5: Deploy to Cloud Run (FIXED)
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'gcloud'  # Invoke gcloud properly
     args:
