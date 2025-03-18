@@ -31,7 +31,7 @@ steps:
 
 
 
-  # Step 5: Deploy to Cloud Run (FIXED)
+  # Step 5: Deploy to Cloud Run 
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'gcloud'  # Invoke gcloud properly
     args:
