@@ -20,6 +20,8 @@ steps:
     args:
       - 'push'
       - 'gcr.io/$PROJECT_ID/hello-world:$COMMIT_SHA'
+    
+
 
  # Step 4: Scan the Docker image using Trivy
   - name: 'aquasec/trivy'
@@ -27,11 +29,17 @@ steps:
     args:
       - '-c'
       - |
-        trivy image gcr.io/$PROJECT_ID/hello-world:$COMMIT_SHA || true
+        trivy image gcr.io/$PROJECT_ID/hello-world:$COMMIT_SHA > trivy-report.txt || true
 
+# Step 5: Upload Trivy report to Cloud Storage bucket
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        gsutil cp trivy-report.txt gs://my-github-pipeline-bucket/trivy-reports/trivy-report-$COMMIT_SHA.txt
 
-
-  # Step 5: Deploy to Cloud Run 
+  # Step 6: Deploy to Cloud Run 
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'gcloud'  # Invoke gcloud properly
     args:
